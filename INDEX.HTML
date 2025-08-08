@@ -15,20 +15,19 @@
         }
         .hero-section {
             position: relative;
+            /* Fallback then modern small viewport to avoid mobile UI gaps */
             height: 100vh;
+            height: 100svh;
             overflow: hidden;
+            background: #000; /* Prevent gray gaps if video doesn't fully cover */
         }
         #hero-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 50%;
-            width: auto;
-            height: auto;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: -100;
-            transform: translateX(-50%) translateY(-50%);
-            background-size: cover;
         }
         .hero-overlay {
             position: absolute;
@@ -167,7 +166,10 @@
                 </div>
                 <!-- Menu Item 3 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
-                    <img src="assets/CHORI.JPG" alt="כריך צ'וריפאן" class="w-full h-48 object-cover">
+                    <video class="w-full h-48 object-cover" autoplay muted loop playsinline poster="assets/CHORI.JPG">
+                        <source src="assets/CHORI-VIDEO.mp4" type="video/mp4">
+                        <img src="assets/CHORI.JPG" alt="כריך צ'וריפאן" class="w-full h-48 object-cover">
+                    </video>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">צ'וריפאן</h3>
                         <p class="text-gray-600 mb-4 flex-grow">שתי נקניקיות צ'וריסו עם צ'ימיצ'ורי וסלסה בלחמנייה.</p>
