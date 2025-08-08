@@ -27,7 +27,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -100;
+            z-index: 0; /* ensure video is visible on Safari/iOS */
         }
         .hero-overlay {
             position: absolute;
@@ -36,7 +36,7 @@
             right: 0;
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: -50;
+            z-index: 1;
         }
         .stars {
             color: #FBBF24; /* a nice gold color */
@@ -110,7 +110,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section text-white flex items-center justify-center">
-        <video autoplay muted loop playsinline id="hero-video">
+        <video autoplay muted playsinline webkit-playsinline loop preload="metadata" id="hero-video" poster="assets/IMG_2175.JPG">
             <source src="assets/hero-video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -165,7 +165,7 @@
                 </div>
                 <!-- Menu Item 3 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
-                    <video class="w-full h-48 object-cover" autoplay muted loop playsinline poster="assets/CHORI.JPG">
+                    <video id="menu-item-3-video" class="w-full h-48 object-cover" autoplay muted playsinline webkit-playsinline loop preload="metadata" poster="assets/CHORI.JPG">
                         <source src="assets/CHORI-VIDEO.mp4" type="video/mp4">
                         <img src="assets/CHORI.JPG" alt="כריך צ'וריפאן" class="w-full h-48 object-cover">
                     </video>
@@ -468,8 +468,60 @@
         }
         link.setAttribute('rel', 'noopener noreferrer');
     });
+
+    // Ensure videos autoplay reliably on mobile (iOS/Safari)
+    document.addEventListener('DOMContentLoaded', () => {
+        const videos = [
+            document.getElementById('hero-video'),
+            document.getElementById('menu-item-3-video')
+        ].filter(Boolean);
+
+        videos.forEach((videoEl) => {
+            // Defensive attributes in JS, in addition to HTML
+            try {
+                videoEl.muted = true;
+                videoEl.playsInline = true;
+                videoEl.setAttribute('playsinline', '');
+                videoEl.setAttribute('webkit-playsinline', '');
+                videoEl.preload = 'metadata';
+            } catch {}
+
+            const tryPlay = () => {
+                const p = videoEl.play();
+                if (p && typeof p.catch === 'function') {
+                    p.catch(() => { /* ignore autoplay blocks; we'll retry on gesture */ });
+                }
+            };
+
+            // Initial attempt
+            tryPlay();
+
+            // Retry on first user gesture (tap/click)
+            const onUserGesture = () => {
+                tryPlay();
+                window.removeEventListener('touchstart', onUserGesture);
+                window.removeEventListener('click', onUserGesture);
+            };
+            window.addEventListener('touchstart', onUserGesture, { once: true });
+            window.addEventListener('click', onUserGesture, { once: true });
+
+            // Play when visible, pause when not (saves battery, helps some browsers)
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            tryPlay();
+                        } else {
+                            videoEl.pause();
+                        }
+                    });
+                }, { threshold: 0.25 });
+                io.observe(videoEl);
+            }
+        });
+    });
 </script>
-...existing code...
+
 
 </body>
 </html>
