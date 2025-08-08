@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מיטגלגלים - כריכי בשר ברמת נגב</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 50%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -50;
+        }
+        .stars {
+            color: #FBBF24; /* a nice gold color */
+        }
+     /* --- Reviews Carousel Styles --- */
+.reviews-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.reviews-track {
+    display: flex;
+    /* 10 original cards * 2 for seamless loop = 20 cards. 
+       Each card is 20rem wide (w-80). 20 * 20rem = 400rem */
+    width: calc(20rem * 20); 
+    animation: scroll 80s linear infinite;
+}
+.reviews-track:hover {
+    animation-play-state: paused;
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move by the width of the original 10 cards */
+        transform: translateX(calc(-20rem * 10));
+    }
+}
+.review-card {
+    width: 20rem; /* w-80 */
+    flex-shrink: 0;
+}
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-6 py-2 flex justify-between items-center">
+        <a href="#" class="flex items-center gap-3">
+            <img src="assets/logo.jpeg" alt="לוגו מיטגלגלים" class="h-12 w-12 object-contain">
+            <span class="text-2xl font-bold text-red-800">מיטגלגלים</span>
+        </a>
+        <div class="hidden md:flex space-x-8 space-x-reverse">
+            <a href="#about" class="text-gray-600 hover:text-red-700">הסיפור שלנו</a>
+            <a href="#menu" class="text-gray-600 hover:text-red-700">התפריט</a>
+            <a href="#reviews" class="text-gray-600 hover:text-red-700">ביקורות</a>
+            <a href="#location" class="text-gray-600 hover:text-red-700">איפה אנחנו</a>
+            <a href="#gallery" class="text-gray-600 hover:text-red-700">גלריה</a>
+            <a href="#contact" class="text-gray-600 hover:text-red-700">צרו קשר</a>
+        </div>
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-gray-600 hover:text-red-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white py-2">
+        <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-red-50">הסיפור שלנו</a>
+        <a href="#menu" class="block px-6 py-2 text-gray-600 hover:bg-red-50">התפריט</a>
+        <a href="#reviews" class="block px-6 py-2 text-gray-600 hover:bg-red-50">ביקורות</a>
+        <a href="#location" class="block px-6 py-2 text-gray-600 hover:bg-red-50">איפה אנחנו</a>
+        <a href="#gallery" class="block px-6 py-2 text-gray-600 hover:bg-red-50">גלריה</a>
+        <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-red-50">צרו קשר</a>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white flex items-center justify-center">
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="assets/hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="text-center p-8 rounded-lg z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">כריכי הבשר שיעשו לכם את הסופ"ש</h1>
+            <p class="text-lg md:text-xl mb-8">בשר משובח, לחמים טריים והרבה אהבה. מי שיודע יודע.</p>
+            <a href="#menu" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">בואו לראות את התפריט</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- About Section -->
+        <section id="about" class="mb-16 scroll-mt-20">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-red-800 mb-4">אוכל זה אהבה, שורשים, וגם כתם שומן על החולצה.</h2>
+                    <div class="text-lg leading-relaxed space-y-4">
+                        <p>תכירו, אורי נחימוב, הזקן עם הזקן. 35 שנה של מסעדות, קייטרינג ואירוח ביתי - ועכשיו על גלגלים ובכריך. 35 שנה שהוא חי את הבשר. 20 שנה שאנחנו חיים במדבר.</p>
+                        <p>ואני? דבורה, נעים להכיר. אני חיה איתו, עם הבשר, עם הכתמים ועם העשן 35 שנה. עומדת מאחורי הקלעים, מאחורי הפוסטים ומאחורי אורי (לפעמים גם מקדימה כדי להזכיר לו מתי להפוך את הבשר).</p>
+                        <p>אז יש לנו פודטראק חדש- כריכים עם בשר והרבה אהבה. אנחנו פה, במדבר, בנגב, בשקט עם פודטראק שלא נוסע לשום מקום - אבל מתאים לנו בול. תבואו רעבים וסקרנים, בשר משובח בכריך מובטח.</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="assets/about-image.jpeg" alt="אורי הבעלים של מיטגלגלים מול הפוד טראק" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-red-800 mb-8">התפריט שלנו</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="assets/ASADOMEAL.JPG" alt="כריך קראסו אסאדו" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">קוראסון אסאדו</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">אסאדו מפורק עם בצל מקורמל, מייפל, ברביקיו וצ'ימיצורי.</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">48 ₪</p>
+                    </div>
+                </div>
+                <!-- Menu Item 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="assets/LOMITO.JPG" alt="כריך לומיטו" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">לומיטו</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">פרוסות דקות של אנטריקוט ושייטל עם איולי שום, קולי פלפלים, חסה ועגבניה.</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">48 ₪</p>
+                    </div>
+                </div>
+                <!-- Menu Item 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="assets/CHORI.JPG" alt="כריך צ'וריפאן" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">צ'וריפאן</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">שתי נקניקיות צ'וריסו עם צ'ימיצ'ורי וסלסה בלחמנייה.</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
+                    </div>
+                </div>
+                 <!-- Menu Item 4 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="###" alt="בירה וצ'יפס" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">מרדונה</h3>
+                        <div class="text-gray-600 mb-4 flex-grow">
+                            כריך מרדונה
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         </section>
+        <section id="menu" class="mb-16 scroll-mt-20">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Menu Item 5 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="###" alt="כריך קורנביף" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">כריך קורנביף</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">כריך קורנביף.</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
+                    </div>
+                </div>
+                <!-- Menu Item 6 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="###" alt="המבורגר" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">המבורגר</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">המבורגר.</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
+                    </div>
+                </div>
+                <!-- Menu Item 7 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="assets/CHORI.JPG" alt="לצד הכריך" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">לצד הכריך</h3>
+                        <p class="text-gray-600 mb-4 flex-grow"></p>
+                        <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
+                        <p>שתיה קלה (פחית) - 10 ₪</p>
+                        <p>גולדסטאר/קורונה/קרומבכר - 25 ₪</p>
+                        <p> ציפס קטן/גדול - 13/18 ₪</p>
+                        <p>סלטניה קטן/גדול - 15/20 ₪</p>
+                    </div>
+                </div>
+                 <!-- Menu Item 8-->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
+                    <img src="###" alt="המשך יבוא" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">המשך יבוא</h3>
+                        <div class="text-gray-600 mb-4 flex-grow">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+     <!-- Reviews Section -->
+<section id="reviews" class="mb-16 scroll-mt-20">
+    <h2 class="text-3xl font-bold text-center text-red-800 mb-8">מה חושבים עלינו?</h2>
+    <div class="reviews-carousel">
+        <div class="reviews-track">
+            <!-- Original 10 Reviews -->
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">יעל כ.</p></div>
+                    <p class="text-gray-600 flex-grow">"הכריך הכי טעים שאכלתי בחיים! בשר איכותי, לחם טרי ושירות עם חיוך. אין ספק שנחזור שוב ושוב."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">דניאל ל.</p></div>
+                    <p class="text-gray-600 flex-grow">"עצירה חובה לכל מי שמטייל באזור. האסאדו פשוט נמס בפה. אווירה כיפית ואנשים מקסימים. מומלץ בחום!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">אביב ש.</p></div>
+                    <p class="text-gray-600 flex-grow">"פשוט וואו. הגענו במקרה אחרי טיול וזכינו. כריך לומיטו אליפות, הבשר רך והרטבים בול. תודה על חוויה טעימה!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">נועה ומשה</p></div>
+                    <p class="text-gray-600 flex-grow">"המקום הקבוע שלנו בכל סופ"ש. אורי ודבורה מקסימים, האוכל תמיד טרי וטעים והאווירה במדבר עושה את כל ההבדל."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="mr-4 font-bold text-lg">תומר ג.</p></div>
+                    <p class="text-gray-600 flex-grow">"לא ציפיתי למצוא כזאת פנינה באמצע שום מקום. הכריכים מושקעים, גדולים ומשביעים. שווה כל שקל."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">משפחת כהן</p></div>
+                    <p class="text-gray-600 flex-grow">"הגענו כל המשפחה והיה מושלם. גם הילדים טרפו את הכריכים. שירות אדיב ומהיר. מומלץ בחום."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">שירן א.</p></div>
+                    <p class="text-gray-600 flex-grow">"הקראסו אסאדו הכי טוב שאכלתי! הבשר נימוח והלחמנייה טרייה וקריספית. רואים ששמים פה לב בכל פרט. שאפו!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">רועי פ.</p></div>
+                    <p class="text-gray-600 flex-grow">"בתור חובב בשר מושבע, אני יכול להגיד בלב שלם - זה המקום. איכותי, טעים ובמחיר הוגן. הפודטראק הכי טוב בדרום, בפער."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">מיכל ר.</p></div>
+                    <p class="text-gray-600 flex-grow">"מצאנו את המקום בדרך לאילת, איזו הפתעה נהדרת! כריכים טריים, בשר מעולה ושירות מהיר. הרבה יותר טוב מכל מסעדת דרכים אחרת."</p>
+                </div>
+            </div>
+             <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">גיא וטל</p></div>
+                    <p class="text-gray-600 flex-grow">"הפודטראק הכי שווה בדרום! אווירה מדברית, אנשים טובים ואוכל שמדבר בעד עצמו. הלומיטו היה פשוט מושלם. נתראה בסופ"ש הבא!"</p>
+                </div>
+            </div>
+
+            <!-- Duplicated 10 Reviews for seamless loop -->
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">יעל כ.</p></div>
+                    <p class="text-gray-600 flex-grow">"הכריך הכי טעים שאכלתי בחיים! בשר איכותי, לחם טרי ושירות עם חיוך. אין ספק שנחזור שוב ושוב."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">דניאל ל.</p></div>
+                    <p class="text-gray-600 flex-grow">"עצירה חובה לכל מי שמטייל באזור. האסאדו פשוט נמס בפה. אווירה כיפית ואנשים מקסימים. מומלץ בחום!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">אביב ש.</p></div>
+                    <p class="text-gray-600 flex-grow">"פשוט וואו. הגענו במקרה אחרי טיול וזכינו. כריך לומיטו אליפות, הבשר רך והרטבים בול. תודה על חוויה טעימה!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">נועה ומשה</p></div>
+                    <p class="text-gray-600 flex-grow">"המקום הקבוע שלנו בכל סופ"ש. אורי ודבורה מקסימים, האוכל תמיד טרי וטעים והאווירה במדבר עושה את כל ההבדל."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="mr-4 font-bold text-lg">תומר ג.</p></div>
+                    <p class="text-gray-600 flex-grow">"לא ציפיתי למצוא כזאת פנינה באמצע שום מקום. הכריכים מושקעים, גדולים ומשביעים. שווה כל שקל."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">משפחת כהן</p></div>
+                    <p class="text-gray-600 flex-grow">"הגענו כל המשפחה והיה מושלם. גם הילדים טרפו את הכריכים. שירות אדיב ומהיר. מומלץ בחום."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">שירן א.</p></div>
+                    <p class="text-gray-600 flex-grow">"הקראסו אסאדו הכי טוב שאכלתי! הבשר נימוח והלחמנייה טרייה וקריספית. רואים ששמים פה לב בכל פרט. שאפו!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">רועי פ.</p></div>
+                    <p class="text-gray-600 flex-grow">"בתור חובב בשר מושבע, אני יכול להגיד בלב שלם - זה המקום. איכותי, טעים ובמחיר הוגן. הפודטראק הכי טוב בדרום, בפער."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">מיכל ר.</p></div>
+                    <p class="text-gray-600 flex-grow">"מצאנו את המקום בדרך לאילת, איזו הפתעה נהדרת! כריכים טריים, בשר מעולה ושירות מהיר. הרבה יותר טוב מכל מסעדת דרכים אחרת."</p>
+                </div>
+            </div>
+             <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">גיא וטל</p></div>
+                    <p class="text-gray-600 flex-grow">"הפודטראק הכי שווה בדרום! אווירה מדברית, אנשים טובים ואוכל שמדבר בעד עצמו. הלומיטו היה פשוט מושלם. נתראה בסופ"ש הבא!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-8 space-y-4 md:space-y-0 md:space-x-4 md:space-x-reverse">
+        <a href="https://g.page/r/CZLnLdGf2GRqEBM/review" id="write-review-btn" class="inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-800 transition duration-300">
+            <i class="fas fa-pencil-alt mr-2"></i> רוצים לכתוב ביקורת?
+        </a>
+        <a href="https://g.page/r/CZLnLdGf2GRqEBM/review" id="read-reviews-btn" class="inline-block bg-gray-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-700 transition duration-300">
+            <i class="fab fa-google mr-2"></i> לקריאת כל הביקורות בגוגל
+        </a>
+    </div>
+</section>
+
+        <!-- Location Section -->
+        <section id="location" class="mb-16 scroll-mt-20 text-center">
+            <h2 class="text-3xl font-bold text-red-800 mb-4">איפה ומתי?</h2>
+            <p class="text-xl mb-2">אנחנו מחכים לכם ב<strong class="font-bold">מתחם החניה מועצה אזורית רמת הנגב (מול התחנת הדלק מנטה)</strong></p>
+            <p class="text-xl font-bold mb-6">כל יום שישי ושבת | 12:00 - 17:00</p>
+            <div class="w-full h-96 rounded-lg shadow-xl overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1209.086057621689!2d34.77201264408419!3d31.003624477087588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sil!4v1754663133310!5m2!1sen!2sil" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-red-800 mb-8">קצת מהאווירה</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/WhatsApp Image 2025-08-08 at 14.20.37 (1).jpeg" alt="תמונה מהגלריה - כריך קראסו" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/WhatsApp Image 2025-08-08 at 14.20.38 (2).jpeg" alt="תמונה מהגלריה - כריך ובירה" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2175.JPG" alt="תמונה מהגלריה - אורי הבעלים" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2112.JPG" alt="תמונה מהגלריה - כריך בלחמניית המבורגר" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                  <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2178.JPG" alt="תמונה מהגלריה - כריך קראסו" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2179.JPG" alt="תמונה מהגלריה - כריך ובירה" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2187.JPG" alt="תמונה מהגלריה - אורי הבעלים" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg">
+                    <img src="assets/IMG_2253.JPG" alt="תמונה מהגלריה - כריך בלחמניית המבורגר" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="scroll-mt-20 bg-white p-8 rounded-lg shadow-lg">
+             <h2 class="text-3xl font-bold text-center text-red-800 mb-8">דברו איתנו</h2>
+             <div class="text-center text-lg">
+                <p class="mb-2">להזמנות מראש או סתם כדי להגיד שלום (לחצו על המספר לשליחת הודעת וואטסאפ):</p>
+                <p class="font-bold text-xl text-red-700">
+                    <a href="https://wa.me/972544341281" class="hover:underline" target="_blank">054-434-1281</a>
+                </p>
+                <p class="mt-4">עקבו אחרינו גם ברשתות החברתיות!</p>
+<div class="flex justify-center gap-6 mt-4">
+    <a href="https://www.facebook.com/profile.php?id=61578121682233" target="_blank" aria-label="Facebook" class="text-3xl text-blue-600 hover:text-blue-800 transition">
+        <i class="fab fa-facebook-square"></i>
+    </a>
+    <a href="https://www.instagram.com/meatgalgelim_/" target="_blank" aria-label="Instagram" class="text-3xl text-pink-500 hover:text-pink-700 transition">
+        <i class="fab fa-instagram"></i>
+    </a>
+</div>
+<!-- Social media icons can be added here -->
+             </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-12">
+        <p>&copy; 2024 מיטגלגלים. כל הזכויות שמורות.</p>
+    </footer>
+
+    ...existing code...
+<script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+    for (let i = 0; i < mobileMenuLinks.length; i++) {
+        mobileMenuLinks[i].addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+
+    // Open all external links in a new tab
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+        // Only if not already set
+        if (!link.hasAttribute('target')) {
+            link.setAttribute('target', '_blank');
+        }
+        link.setAttribute('rel', 'noopener noreferrer');
+    });
+</script>
+...existing code...
+
+</body>
+</html>
