@@ -46,26 +46,29 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    direction: ltr; /* keep marquee direction consistent on RTL pages */
 }
 .reviews-track {
     display: flex;
-    /* 10 original cards * 2 for seamless loop = 20 cards. 
-       Each card is 20rem wide (w-80). 20 * 20rem = 400rem */
-    width: calc(20rem * 20); 
-    animation: scroll 80s linear infinite;
+    width: max-content; /* ensure track expands to content width for smooth loop */
+    animation: scroll 60s linear infinite;
+    will-change: transform;
+    direction: ltr;
 }
-.reviews-track:hover {
-    animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .reviews-track:hover {
+      animation-play-state: paused;
+  }
 }
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* Move by the width of the original 10 cards */
-        transform: translateX(calc(-20rem * 10));
+        /* Move by half the total width (since content is duplicated) */
+        transform: translateX(-50%);
     }
 }
 .review-card {
@@ -115,8 +118,8 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="text-center p-8 rounded-lg z-10">
-            <h1 class="text-6xl md:text-6xl font-bold mb-4">כריכי הבשר שיעשו לכם את הסופ"ש</h1>
-            <p class="text-lg md:text-xl mb-8">בשר משובח, לחמים טריים והרבה אהבה. מי שיודע יודע.</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">כריכי הבשר שיעשו לכם את הסופ"ש</h1>
+            <p class="text-2xl md:text-3xl mb-8">בשר משובח, לחמים טריים והרבה אהבה. מי שיודע יודע.</p>
             <a href="#menu" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">בואו לראות את התפריט</a>
         </div>
     </section>
@@ -149,8 +152,8 @@
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
                     <img src="assets/ASADOMEAL.JPG" alt="כריך קראסו אסאדו" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2">קוראסון אסאדו</h3>
-                        <p class="text-gray-600 mb-4 flex-grow">אסאדו מפורק עם בצל מקורמל, מייפל, ברביקיו וצ'ימיצורי.</p>
+                        <h3 class="text-xl font-bold mb-2">קרואסון אסאדו</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">אסאדו מפורק עם בצל מקורמל, מייפל, ברביקיו וצ'ימיצורי בתוך קרואסון.</p>
                         <p class="text-xl font-bold text-red-700 mt-auto">48 ₪</p>
                     </div>
                 </div>
@@ -159,7 +162,7 @@
                     <img src="assets/LOMITO.JPG" alt="כריך לומיטו" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">לומיטו</h3>
-                        <p class="text-gray-600 mb-4 flex-grow">פרוסות דקות של אנטריקוט ושייטל עם איולי שום, קולי פלפלים, חסה ועגבניה.</p>
+                        <p class="text-gray-600 mb-4 flex-grow">סלייסים של אנטריקוט ושייטל עם איולי שום, קולי פלפלים, חסה, עגבניה וסלט כרובים עם גזר ובצל סגול בתוך ג'בטה רוסטיק.</p>
                         <p class="text-xl font-bold text-red-700 mt-auto">48 ₪</p>
                     </div>
                 </div>
@@ -187,7 +190,6 @@
                 </div>
             </div>
         </section>
-         </section>
         <section id="menu" class="mb-16 scroll-mt-20">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Menu Item 5 -->
@@ -195,7 +197,7 @@
                     <img src="assets/CORN.jpeg" alt="כריך קורנביף" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">כריך קורנביף</h3>
-                        <p class="text-gray-600 mb-4 flex-grow">כריך קורנביף.</p>
+                        <p class="text-gray-600 mb-4 flex-grow">קורנביף עם ממרח מיונז, רוטב ברביקיו, ומלפפון מוחמץ עם כרוב מוחמץ בג'בטה רוסטיק.</p>
                         <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
                     </div>
                 </div>
@@ -204,7 +206,7 @@
                     <img src="assets/BURGER.jpeg" alt="המבורגר" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">המבורגר</h3>
-                        <p class="text-gray-600 mb-4 flex-grow">המבורגר.</p>
+                        <p class="text-gray-600 mb-4 flex-grow">קציצת בקר אנגוס בתוך לחמניית המבורגר עם איולי חרדל, חסה, עגבניה, מלפפון מוחמץ ובצל סגול.</p>
                         <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
                     </div>
                 </div>
@@ -214,7 +216,7 @@
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">לצד הכריך</h3>
                         <p class="text-gray-600 mb-4 flex-grow"></p>
-                        <p class="text-xl font-bold text-red-700 mt-auto">45 ₪</p>
+                        <p class="text-xl font-bold text-red-700 mt-auto"></p>
                         <p>שתיה קלה (פחית) - 10 ₪</p>
                         <p>גולדסטאר/קורונה/קרומבכר - 25 ₪</p>
                         <p> ציפס קטן/גדול - 13/18 ₪</p>
@@ -223,7 +225,7 @@
                 </div>
                  <!-- Menu Item 8-->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
-                    <img src="###" alt="המשך יבוא" class="w-full h-48 object-cover">
+                    <img src="assets/logo.jpeg" alt="המשך יבוא" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold mb-2">המשך יבוא</h3>
                         <div class="text-gray-600 mb-4 flex-grow">
@@ -239,7 +241,7 @@
     <h2 class="text-3xl font-bold text-center text-red-800 mb-8">מה חושבים עלינו?</h2>
     <div class="reviews-carousel">
         <div class="reviews-track">
-            <!-- Original 10 Reviews -->
+            <!-- Original 14 Reviews -->
             <div class="review-card p-4">
                 <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
                     <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">יעל כ.</p></div>
@@ -292,6 +294,30 @@
                 <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
                     <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">מיכל ר.</p></div>
                     <p class="text-gray-600 flex-grow">"מצאנו את המקום בדרך לאילת, איזו הפתעה נהדרת! כריכים טריים, בשר מעולה ושירות מהיר. הרבה יותר טוב מכל מסעדת דרכים אחרת."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">עדי ח.</p></div>
+                    <p class="text-gray-600 flex-grow">"איזה הפתעה מדהימה באמצע המדבר! כריכים מפנקים, בשר איכותי ושירות מהמם. ממליצה להגיע רעבים!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">איתי ב.</p></div>
+                    <p class="text-gray-600 flex-grow">"הכריך לומיטו פשוט פצצה. מאז שגילינו – חוזרים כל סופ"ש. תודה על אוכל טוב ואווירה מושלמת."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">עומר ז.</p></div>
+                    <p class="text-gray-600 flex-grow">"האסאדו נימוח, הרטבים מדויקים והכריכים נדיבים. עוצר כאן בכל נסיעה דרומה."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="mr-4 font-bold text-lg">שירי מ.</p></div>
+                    <p class="text-gray-600 flex-grow">"מקום קטן ומקסים, אוכל בשרי משובח ושירות מכל הלב. נחזור שוב בוודאות!"</p>
                 </div>
             </div>
              <div class="review-card p-4">
@@ -301,7 +327,7 @@
                 </div>
             </div>
 
-            <!-- Duplicated 10 Reviews for seamless loop -->
+            <!-- Duplicated 14 Reviews for seamless loop -->
             <div class="review-card p-4">
                 <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
                     <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">יעל כ.</p></div>
@@ -354,6 +380,30 @@
                 <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
                     <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">מיכל ר.</p></div>
                     <p class="text-gray-600 flex-grow">"מצאנו את המקום בדרך לאילת, איזו הפתעה נהדרת! כריכים טריים, בשר מעולה ושירות מהיר. הרבה יותר טוב מכל מסעדת דרכים אחרת."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">עדי ח.</p></div>
+                    <p class="text-gray-600 flex-grow">"איזה הפתעה מדהימה באמצע המדבר! כריכים מפנקים, בשר איכותי ושירות מהמם. ממליצה להגיע רעבים!"</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">איתי ב.</p></div>
+                    <p class="text-gray-600 flex-grow">"הכריך לומיטו פשוט פצצה. מאז שגילינו – חוזרים כל סופ"ש. תודה על אוכל טוב ואווירה מושלמת."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="mr-4 font-bold text-lg">עומר ז.</p></div>
+                    <p class="text-gray-600 flex-grow">"האסאדו נימוח, הרטבים מדויקים והכריכים נדיבים. עוצר כאן בכל נסיעה דרומה."</p>
+                </div>
+            </div>
+            <div class="review-card p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col">
+                    <div class="flex items-center mb-4"><div class="stars text-lg"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="mr-4 font-bold text-lg">שירי מ.</p></div>
+                    <p class="text-gray-600 flex-grow">"מקום קטן ומקסים, אוכל בשרי משובח ושירות מכל הלב. נחזור שוב בוודאות!"</p>
                 </div>
             </div>
              <div class="review-card p-4">
@@ -411,6 +461,7 @@
                 </div>
                 <div class="rounded-lg overflow-hidden shadow-lg">
                     <img src="assets/IMG_2253.JPG" alt="תמונה מהגלריה - כריך בלחמניית המבורגר" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                </div>
             </div>
         </section>
 
@@ -520,6 +571,8 @@
             }
         });
     });
+
+    // CSS-only carousel now handles smooth infinite scroll; no JS needed here.
 </script>
 
 
