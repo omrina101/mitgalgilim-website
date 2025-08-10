@@ -134,11 +134,13 @@
     width: 20rem; /* w-80 */
     flex-shrink: 0;
 }
-        /* Smooth scrolling for in-page navigation */
-        html, body { scroll-behavior: smooth; }
         /* Offset for sticky header during anchor jumps */
         :root { --header-height: 64px; }
         html { scroll-padding-top: var(--header-height); }
+        /* Ensure native anchor alignment plays nice with sticky header */
+        section { scroll-margin-top: var(--header-height); }
+        /* Pause heavy animations during programmatic scroll on mobile */
+        body.is-scrolling .reviews-track { animation-play-state: paused !important; }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -591,7 +593,9 @@
                 window.scrollTo(0, startY + distance * eased);
                 if (elapsed < duration) requestAnimationFrame(step);
             }
+            try { document.body.classList.add('is-scrolling'); } catch {}
             requestAnimationFrame(step);
+            setTimeout(() => { try { document.body.classList.remove('is-scrolling'); } catch {} }, duration + 50);
         }
 
         function handleAnchorClick(e){
@@ -609,13 +613,16 @@
             const wasOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
             if (wasOpen) {
                 mobileMenu.classList.add('hidden');
+                // Force reflow to stabilize iOS Safari before computing target position
+                void document.body.offsetHeight;
             }
-            requestAnimationFrame(() => {
+            // Two frames to allow layout to settle after menu close on iOS Safari
+            requestAnimationFrame(() => requestAnimationFrame(() => {
                 const rect = target.getBoundingClientRect();
                 const headerOffset = getHeaderOffset();
                 const targetY = Math.max(0, rect.top + window.pageYOffset - headerOffset);
                 smoothScrollTo(targetY, 1300);
-            });
+            }));
         }
 
         function bindAnchors(scope){
