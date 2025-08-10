@@ -134,6 +134,11 @@
     width: 20rem; /* w-80 */
     flex-shrink: 0;
 }
+        /* Smooth scrolling for in-page navigation */
+        html, body { scroll-behavior: smooth; }
+        /* Offset for sticky header during anchor jumps */
+        :root { --header-height: 64px; }
+        html { scroll-padding-top: var(--header-height); }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -248,7 +253,7 @@
                 </div>
             </div>
         </section>
-        <section id="menu" class="mb-16 scroll-mt-20">
+        <section id="menu-2" class="mb-16 scroll-mt-20">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Menu Item 5 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
@@ -559,6 +564,57 @@
 
 
 <script>
+    // Smooth scroll for in-page anchors with header offset and wide browser support
+    (function(){
+        const HEADER_OFFSET = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64;
+
+        function easeInOutCubic(t){
+            return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+        }
+
+        function smoothScrollTo(targetY, duration){
+            const startY = window.pageYOffset;
+            const distance = targetY - startY;
+            let startTime = null;
+
+            function step(timestamp){
+                if (startTime === null) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeInOutCubic(progress);
+                window.scrollTo(0, startY + distance * eased);
+                if (elapsed < duration) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function handleAnchorClick(e){
+            const link = e.currentTarget;
+            const href = link.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            e.preventDefault();
+            if (href === '#') { // scroll to top
+            smoothScrollTo(0, 1300);
+                return;
+            }
+            const target = document.querySelector(href);
+            if (!target) return;
+            const rect = target.getBoundingClientRect();
+            const targetY = Math.max(0, rect.top + window.pageYOffset - HEADER_OFFSET);
+            smoothScrollTo(targetY, 1300);
+        }
+
+        function bindAnchors(scope){
+            scope.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', handleAnchorClick));
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => bindAnchors(document));
+        } else {
+            bindAnchors(document);
+        }
+    })();
+
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
