@@ -154,11 +154,20 @@
             <div class="max-w-4xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-red-700">
                 <p class="text-2xl mb-8 text-center font-bold">חניון המועצה האזורית רמת הנגב</p>
                 
-                <!-- Updated Vacation Notice Section -->
-                <div class="mb-10 bg-amber-50 p-6 rounded-2xl border-2 border-amber-200 shadow-sm text-center">
+                <!-- Vacation Notice -->
+                <div class="mb-6 bg-amber-50 p-6 rounded-2xl border-2 border-amber-200 shadow-sm text-center">
                     <h3 class="text-2xl font-bold text-amber-800 mb-2">🌞 הודעת חופשה</h3>
-                    <p class="text-lg">גם הגריל צריך חופש פעם בשנה!</p>
-                    <p class="text-lg font-bold">יצאנו לפגרה עד סוף יולי, נתראה באוגוסט.</p>
+                    <p class="text-lg">יצאנו לפגרה במהלך חודש יולי. נתראה באוגוסט!</p>
+                </div>
+
+                <!-- Opening Hours (Effective August) -->
+                <div class="mb-10 bg-gray-50 p-6 rounded-2xl border border-gray-200 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">שעות פתיחה (החל מאוגוסט):</h3>
+                    <div class="text-lg space-y-2 text-gray-700">
+                        <p><span class="font-bold">יום ה':</span> 11:30 - 17:00</p>
+                        <p><span class="font-bold">יום ו':</span> 11:00 - 17:00</p>
+                        <p><span class="font-bold">יום ש':</span> 12:00 - 18:00</p>
+                    </div>
                 </div>
 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
@@ -187,7 +196,10 @@
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-        // Rest of scripts remain same as your original
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>
