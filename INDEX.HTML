@@ -30,9 +30,9 @@
         "addressCountry": "IL"
       },
       "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "11:30", "closes": "17:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:30", "closes": "17:00" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "12:00", "closes": "18:00" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "11:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:00", "closes": "17:00" }
       ],
       "telephone": "+972-54-434-1281"
     }
@@ -145,7 +145,7 @@
                     <div class="p-6 text-center flex-grow text-gray-800">
                         <h3 class="text-2xl font-bold mb-2">קרואסון אסאדו</h3>
                         <p class="text-gray-600 mb-4">אסאדו מפורק, בצל מקורמל, מייפל וצ'ימיצורי.</p>
-                        <p class="text-2xl font-bold text-red-700 mt-auto">59 ₪</p>
+                        <p class="text-2xl font-bold text-red-700 mt-auto" data-price="asado">59 ₪</p>
                     </div>
                 </div>
                 <!-- Item 2 -->
@@ -154,7 +154,7 @@
                     <div class="p-6 text-center flex-grow text-gray-800">
                         <h3 class="text-2xl font-bold mb-2">לומיטו</h3>
                         <p class="text-gray-600 mb-4">אנטריקוט ושייטל, איולי שום, קולי פלפלים וסלט כרובים.</p>
-                        <p class="text-2xl font-bold text-red-700 mt-auto">65 ₪</p>
+                        <p class="text-2xl font-bold text-red-700 mt-auto" data-price="lomito">65 ₪</p>
                     </div>
                 </div>
                 <!-- Item 3 -->
@@ -163,7 +163,7 @@
                     <div class="p-6 text-center flex-grow text-gray-800">
                         <h3 class="text-2xl font-bold mb-2">צ'וריפאן</h3>
                         <p class="text-gray-600 mb-4">שתי נקניקיות צ'וריסו עם צ'ימיצ'ורי ועגבניה.</p>
-                        <p class="text-2xl font-bold text-red-700 mt-auto">52 ₪</p>
+                        <p class="text-2xl font-bold text-red-700 mt-auto" data-price="chori">52 ₪</p>
                     </div>
                 </div>
                 <!-- Item 4 -->
@@ -172,7 +172,7 @@
                     <div class="p-6 text-center flex-grow">
                         <h3 class="text-2xl font-bold mb-2">קורנביף</h3>
                         <p class="text-gray-600 mb-4">קורנביף, מיונז, ברביקיו, מלפפון מוחמץ וכרוב מוחמץ.</p>
-                        <p class="text-2xl font-bold text-red-700 mt-auto">52 ₪</p>
+                        <p class="text-2xl font-bold text-red-700 mt-auto" data-price="corned">52 ₪</p>
                     </div>
                 </div>
                 <!-- Item 5 -->
@@ -181,17 +181,17 @@
                     <div class="p-6 text-center flex-grow text-gray-800">
                         <h3 class="text-2xl font-bold mb-2">המבורגר אנגוס</h3>
                         <p class="text-gray-600 mb-4">קציצת בקר איכותית, איולי חרדל, חסה, עגבניה, מלפפון ובצל.</p>
-                        <p class="text-2xl font-bold text-red-700 mt-auto">58 ₪</p>
+                        <p class="text-2xl font-bold text-red-700 mt-auto" data-price="burger">58 ₪</p>
                     </div>
                 </div>
                 <!-- Sides/Drinks -->
                 <div class="bg-red-50 rounded-2xl shadow-xl p-6 text-center border-2 border-red-100 flex flex-col h-full text-gray-800">
                     <h3 class="text-2xl font-bold mb-4 text-red-800 border-b-2 border-red-200 pb-2">לצד הכריך</h3>
                     <div class="space-y-2 text-lg text-gray-800">
-                        <p class="flex justify-between"><span>פחית שתיה</span> <span>10 ₪</span></p>
-                        <p class="flex justify-between"><span>בירה קרה</span> <span>25 ₪</span></p>
-                        <p class="flex justify-between"><span>צ'יפס</span> <span>13/18 ₪</span></p>
-                        <p class="flex justify-between"><span>סלטניה</span> <span>15/20 ₪</span></p>
+                        <p class="flex justify-between"><span>פחית שתיה</span> <span data-price="can">10 ₪</span></p>
+                        <p class="flex justify-between"><span>בירה קרה</span> <span data-price="beer">25 ₪</span></p>
+                        <p class="flex justify-between"><span>צ'יפס</span> <span data-price="fries">13/18 ₪</span></p>
+                        <p class="flex justify-between"><span>סלטניה</span> <span data-price="salad">15/20 ₪</span></p>
                     </div>
                     <p class="mt-auto italic text-gray-500 pt-4">שאלו את אורי על "הכריך הסודי"...</p>
                 </div>
@@ -204,23 +204,29 @@
             <div class="max-w-4xl mx-auto bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-red-700">
                 <p class="text-2xl mb-8 text-center font-bold">חניון המועצה האזורית רמת הנגב</p>
 
+                <!-- Special days (filled from the management sheet) -->
+                <div id="special-days" class="hidden mb-8 bg-red-50 border-2 border-red-200 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4 text-center"><i class="fas fa-bullhorn ml-2"></i>שינויים בימים הקרובים</h3>
+                    <ul id="special-days-list" class="space-y-2 text-lg"></ul>
+                </div>
+
                 <div class="border-t pt-8 mb-8">
                     <h3 class="text-xl font-bold text-gray-500 mb-4 text-center">שעות פעילות בשגרה:</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div id="hours-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                         <div class="bg-gray-50 p-6 rounded-2xl shadow-inner border border-gray-100 transform hover:scale-105 transition">
                             <i class="fas fa-calendar-day text-red-700 text-3xl mb-2"></i>
                             <span class="block font-bold text-xl mb-1 text-red-800">יום חמישי</span>
-                            <span class="text-lg time-range">11:30 - 17:00</span>
+                            <span class="text-lg time-range">11:00 - 17:00</span>
                         </div>
                         <div class="bg-gray-50 p-6 rounded-2xl shadow-inner border border-gray-100 transform hover:scale-105 transition">
                             <i class="fas fa-calendar-day text-red-700 text-3xl mb-2"></i>
                             <span class="block font-bold text-xl mb-1 text-red-800">יום שישי</span>
-                            <span class="text-lg time-range">10:30 - 17:00</span>
+                            <span class="text-lg time-range">11:00 - 17:00</span>
                         </div>
                         <div class="bg-gray-50 p-6 rounded-2xl shadow-inner border border-gray-100 transform hover:scale-105 transition">
                             <i class="fas fa-calendar-day text-red-700 text-3xl mb-2"></i>
                             <span class="block font-bold text-xl mb-1 text-red-800">יום שבת</span>
-                            <span class="text-lg time-range">12:00 - 18:00</span>
+                            <span class="text-lg time-range">11:00 - 17:00</span>
                         </div>
                     </div>
                 </div>
@@ -280,6 +286,98 @@
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
+
+        // Prices & opening hours - managed from the Google Sheet admin page.
+        // The values written in the HTML above are a fallback if the fetch fails.
+        const SITE_DATA_URL = 'https://script.google.com/macros/s/AKfycbxyG_wAwASpTawW4DG1XAaqgOYoKWlKXEXfbHizb3P2cJSvfdSeFJ6B5VlqfqVOE3Q/exec?action=data';
+        const DAY_NAMES = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+        const SPECIAL_DAYS_AHEAD = 30;
+
+        function isoDate(d) {
+            return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        }
+
+        function timeRange(open, close) {
+            const span = document.createElement('span');
+            span.className = 'time-range';
+            span.textContent = open + ' - ' + close;
+            return span;
+        }
+
+        function renderPrices(menu) {
+            menu.forEach(item => {
+                document.querySelectorAll('[data-price="' + item.id + '"]').forEach(el => {
+                    el.textContent = item.price + ' ₪';
+                });
+            });
+        }
+
+        function renderHours(hours) {
+            if (!hours.length) return;
+            const grid = document.getElementById('hours-grid');
+            grid.className = 'grid grid-cols-1 md:grid-cols-' + Math.min(hours.length, 4) + ' gap-6 text-center';
+            grid.innerHTML = '';
+            hours.forEach(h => {
+                const card = document.createElement('div');
+                card.className = 'bg-gray-50 p-6 rounded-2xl shadow-inner border border-gray-100 transform hover:scale-105 transition';
+                card.innerHTML = '<i class="fas fa-calendar-day text-red-700 text-3xl mb-2"></i>' +
+                    '<span class="block font-bold text-xl mb-1 text-red-800"></span>';
+                card.querySelector('span').textContent = 'יום ' + DAY_NAMES[h.day];
+                const range = timeRange(h.open, h.close);
+                range.classList.add('text-lg');
+                card.appendChild(range);
+                grid.appendChild(card);
+            });
+        }
+
+        function renderSpecialDays(exceptions, hours) {
+            const today = new Date();
+            const until = new Date(today.getFullYear(), today.getMonth(), today.getDate() + SPECIAL_DAYS_AHEAD);
+            const from = isoDate(today), to = isoDate(until);
+            const upcoming = exceptions.filter(x => x.date >= from && x.date <= to);
+            if (!upcoming.length) return;
+
+            const list = document.getElementById('special-days-list');
+            list.innerHTML = '';
+            upcoming.forEach(x => {
+                const [y, m, d] = x.date.split('-').map(Number);
+                const day = new Date(y, m - 1, d).getDay();
+                const regular = hours.some(h => h.day === day);
+
+                const li = document.createElement('li');
+                li.className = 'flex flex-wrap justify-between gap-2 bg-white rounded-xl px-4 py-3 shadow-sm';
+                const when = document.createElement('span');
+                when.className = 'font-bold';
+                when.textContent = 'יום ' + DAY_NAMES[day] + ' ' + d + '.' + m;
+                const what = document.createElement('span');
+                if (x.closed) {
+                    what.className = 'font-bold text-red-700';
+                    what.textContent = 'סגור';
+                } else {
+                    what.className = 'font-bold text-green-700';
+                    what.textContent = (regular ? 'שעות מיוחדות ' : 'פתוח במיוחד ');
+                    what.appendChild(timeRange(x.open, x.close));
+                }
+                li.append(when, what);
+                if (x.note) {
+                    const note = document.createElement('span');
+                    note.className = 'w-full text-gray-600 text-base';
+                    note.textContent = x.note;
+                    li.appendChild(note);
+                }
+                list.appendChild(li);
+            });
+            document.getElementById('special-days').classList.remove('hidden');
+        }
+
+        fetch(SITE_DATA_URL)
+            .then(res => res.json())
+            .then(data => {
+                renderPrices(data.menu || []);
+                renderHours(data.hours || []);
+                renderSpecialDays(data.exceptions || [], data.hours || []);
+            })
+            .catch(() => {});
 
         // Ensure video plays on all devices
         document.addEventListener('DOMContentLoaded', () => {
