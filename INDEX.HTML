@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מיטגלגלים - כריכי בשר ברמת נגב</title>
+    <title>מיטגלגלים | פודטראק כריכי בשר ברמת הנגב</title>
+    <link rel="canonical" href="https://mitgalgelim.netlify.app/">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#7a1b12">
 
-    <!-- Scripts and Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Styles: assets/site.css is built from tailwind/ (see tailwind/config.js) -->
+    <link rel="stylesheet" href="assets/site.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
@@ -16,13 +20,44 @@
     <meta name="description" content="מיטגלגלים – פודטראק כריכי בשר משובחים ברמת הנגב. אסאדו, לומיטו, צ'וריפאן ועוד. מחכים לכם בחניון המועצה האזורית.">
     <meta name="keywords" content="מיטגלגלים, כריכי בשר, פודטראק, רמת הנגב, אסאדו, לומיטו, אוכל במדבר">
 
+    <!-- Link previews (WhatsApp, Facebook, etc.) -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:site_name" content="מיטגלגלים">
+    <meta property="og:title" content="מיטגלגלים | פודטראק כריכי בשר ברמת הנגב">
+    <meta property="og:description" content="אסאדו, לומיטו, צ'וריפאן ועוד - בשר משובח, לחמים טריים והרבה אהבה. מחכים לכם בחניון המועצה האזורית רמת הנגב.">
+    <meta property="og:url" content="https://mitgalgelim.netlify.app/">
+    <meta property="og:image" content="https://mitgalgelim.netlify.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="קרואסון אסאדו עם צ'יפס ובירה על קרש עץ במדבר">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Structured Data for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FoodTruck",
       "name": "מיטגלגלים",
-      "image": "assets/logo.jpeg",
+      "url": "https://mitgalgelim.netlify.app/",
+      "logo": "https://mitgalgelim.netlify.app/assets/logo.jpeg",
+      "image": [
+        "https://mitgalgelim.netlify.app/assets/og-image.jpg",
+        "https://mitgalgelim.netlify.app/assets/about-image.jpeg"
+      ],
+      "description": "פודטראק כריכי בשר ברמת הנגב: קרואסון אסאדו, לומיטו, צ'וריפאן, קורנביף והמבורגר אנגוס.",
+      "servesCuisine": ["כריכי בשר", "בשר"],
+      "priceRange": "₪₪",
+      "hasMenu": "https://mitgalgelim.netlify.app/#menu",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61578121682233",
+        "https://www.instagram.com/meatgalgelim_/"
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.003624,
+        "longitude": 34.772013
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "חניון מועצה אזורית רמת הנגב",
@@ -30,29 +65,13 @@
         "addressCountry": "IL"
       },
       "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "12:00", "closes": "17:00" },
         { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "11:00", "closes": "17:00" },
         { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "17:00" },
         { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:00", "closes": "17:00" }
       ],
       "telephone": "+972-54-434-1281"
     }
-    </script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['Rubik', 'sans-serif'],
-                        body: ['Assistant', 'sans-serif'],
-                    },
-                    colors: {
-                        ember: { 50: '#fdf6f3', 100: '#f9e8e1', 600: '#b42318', 700: '#962015', 800: '#7a1b12', 900: '#4a110b' },
-                        coal: { 800: '#231f1c', 900: '#171412' },
-                    },
-                },
-            },
-        };
     </script>
 
     <style>
@@ -96,13 +115,15 @@
         #lightbox img { touch-action: pan-y; }
     </style>
 </head>
-<body class="bg-ember-50 text-gray-800 overflow-x-hidden">
+<body class="bg-ember-50 text-gray-800 overflow-x-hidden has-float-cta">
+
+    <a href="#main" class="skip-link">דילוג לתוכן הראשי</a>
 
     <!-- Header -->
     <header class="bg-white/95 backdrop-blur shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 md:px-6 py-2 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
-                <img src="assets/logo.jpeg" alt="לוגו מיטגלגלים" class="h-12 w-12 object-contain rounded-full">
+        <nav class="container mx-auto px-4 md:px-6 py-2 flex justify-between items-center" aria-label="ניווט ראשי">
+            <a href="#" class="flex items-center gap-3" aria-label="מיטגלגלים - לראש הדף">
+                <img src="assets/logo.jpeg" alt="" class="h-12 w-12 object-contain rounded-full">
                 <span class="text-2xl font-display font-extrabold text-ember-800">מיטגלגלים</span>
             </a>
             <div class="hidden md:flex items-center gap-8">
@@ -110,48 +131,51 @@
                 <a href="#menu" class="text-gray-600 hover:text-ember-700 font-semibold">התפריט</a>
                 <a href="#location" class="text-gray-600 hover:text-ember-700 font-semibold">איפה ומתי</a>
                 <a href="#gallery" class="text-gray-600 hover:text-ember-700 font-semibold">גלריה</a>
-                <a href="https://wa.me/972544341281" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2 rounded-full transition flex items-center gap-2">
-                    <i class="fab fa-whatsapp text-lg"></i> צרו קשר
+                <a href="https://wa.me/972544341281" target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2 rounded-full transition flex items-center gap-2">
+                    <i aria-hidden="true" class="fab fa-whatsapp text-lg"></i> צרו קשר
                 </a>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-ember-700 p-2" aria-label="תפריט">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-ember-700 p-2" aria-label="תפריט" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t py-2">
+        <nav id="mobile-menu" class="md:hidden hidden bg-white border-t py-2" aria-label="ניווט ראשי - נייד">
             <a href="#about" class="block px-6 py-3 font-semibold hover:bg-ember-50">הסיפור שלנו</a>
             <a href="#menu" class="block px-6 py-3 font-semibold hover:bg-ember-50">התפריט</a>
             <a href="#location" class="block px-6 py-3 font-semibold hover:bg-ember-50">איפה ומתי</a>
             <a href="#gallery" class="block px-6 py-3 font-semibold hover:bg-ember-50">גלריה</a>
-        </div>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero-section text-white flex items-center justify-center text-center">
-        <video autoplay muted playsinline loop preload="metadata" id="hero-video" poster="assets/IMG_2175.JPG">
+        <video muted playsinline loop preload="metadata" id="hero-video" poster="assets/IMG_2175.JPG" aria-hidden="true">
             <source src="assets/hero-video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
+        <button type="button" id="video-toggle" class="absolute bottom-28 md:bottom-6 right-4 md:right-6 z-10 w-12 h-12 rounded-full bg-black/50 hover:bg-black/70 border border-white/60 text-white text-lg flex items-center justify-center" aria-label="עצירת סרטון הרקע" aria-pressed="false">
+            <i aria-hidden="true" class="fas fa-pause"></i>
+        </button>
         <div class="p-6 z-10 max-w-3xl">
-            <div id="open-status" class="hidden inline-flex items-center gap-3 bg-black/50 backdrop-blur px-5 py-2 rounded-full mb-6 text-lg font-semibold">
-                <span class="status-dot w-3 h-3 rounded-full bg-gray-400"></span>
+            <div id="open-status" role="status" class="hidden inline-flex items-center gap-3 bg-black/50 backdrop-blur px-5 py-2 rounded-full mb-6 text-lg font-semibold">
+                <span aria-hidden="true" class="status-dot w-3 h-3 rounded-full bg-gray-400"></span>
                 <span class="status-text"></span>
             </div>
             <h1 class="text-6xl md:text-8xl font-display font-extrabold mb-4 drop-shadow-lg text-white">מיטגלגלים</h1>
             <p class="text-2xl md:text-3xl mb-10 text-gray-100">בשר משובח, לחמים טריים והרבה אהבה.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#menu" class="bg-ember-600 hover:bg-ember-700 text-white font-bold py-4 px-10 rounded-full text-xl transition hover:scale-105 shadow-xl">לתפריט</a>
-                <a href="https://wa.me/972544341281" target="_blank" class="bg-white/10 hover:bg-white/20 border-2 border-white/70 text-white font-bold py-4 px-10 rounded-full text-xl transition backdrop-blur flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp text-2xl"></i> צרו קשר בוואטסאפ
+                <a href="https://wa.me/972544341281" target="_blank" rel="noopener" class="bg-white/10 hover:bg-white/20 border-2 border-white/70 text-white font-bold py-4 px-10 rounded-full text-xl transition backdrop-blur flex items-center justify-center gap-2">
+                    <i aria-hidden="true" class="fab fa-whatsapp text-2xl"></i> צרו קשר בוואטסאפ
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 md:px-6 py-16 md:py-24">
+    <main id="main" tabindex="-1" class="container mx-auto px-4 md:px-6 py-16 md:py-24">
 
         <!-- About Section -->
         <section id="about" class="mb-24">
@@ -165,7 +189,7 @@
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="assets/about-image.jpeg" alt="אורי מול הפוד טראק" class="rounded-3xl shadow-2xl w-full object-cover md:rotate-1">
+                    <img src="assets/about-image.jpeg" alt="אורי נחימוב מחזיק מגש כריכים מול הפודטראק" loading="lazy" class="rounded-3xl shadow-2xl w-full object-cover md:rotate-1">
                 </div>
             </div>
         </section>
@@ -179,7 +203,7 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Item 1 -->
                 <article class="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col">
-                    <div class="overflow-hidden"><img src="assets/ASADOMEAL.JPG" alt="קרואסון אסאדו" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="overflow-hidden"><img src="assets/ASADOMEAL.JPG" alt="קרואסון אסאדו" loading="lazy" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6 flex-grow">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <h3 class="text-2xl font-display font-bold text-coal-900">קרואסון אסאדו</h3>
@@ -190,7 +214,7 @@
                 </article>
                 <!-- Item 2 -->
                 <article class="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col">
-                    <div class="overflow-hidden"><img src="assets/LOMITO.JPG" alt="לומיטו" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="overflow-hidden"><img src="assets/LOMITO.JPG" alt="לומיטו" loading="lazy" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6 flex-grow">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <h3 class="text-2xl font-display font-bold text-coal-900">לומיטו</h3>
@@ -201,7 +225,7 @@
                 </article>
                 <!-- Item 3 -->
                 <article class="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col">
-                    <div class="overflow-hidden"><img src="assets/CHORI.JPG" alt="צ'וריפאן" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="overflow-hidden"><img src="assets/CHORI.JPG" alt="צ'וריפאן" loading="lazy" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6 flex-grow">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <h3 class="text-2xl font-display font-bold text-coal-900">צ'וריפאן</h3>
@@ -212,7 +236,7 @@
                 </article>
                 <!-- Item 4 -->
                 <article class="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col">
-                    <div class="overflow-hidden"><img src="assets/CORN.jpeg" alt="קורנביף" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="overflow-hidden"><img src="assets/CORN.jpeg" alt="קורנביף" loading="lazy" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6 flex-grow">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <h3 class="text-2xl font-display font-bold text-coal-900">קורנביף</h3>
@@ -223,7 +247,7 @@
                 </article>
                 <!-- Item 5 -->
                 <article class="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col">
-                    <div class="overflow-hidden"><img src="assets/BURGER.jpeg" alt="המבורגר" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
+                    <div class="overflow-hidden"><img src="assets/BURGER.jpeg" alt="המבורגר" loading="lazy" class="w-full h-60 object-cover group-hover:scale-105 transition duration-500"></div>
                     <div class="p-6 flex-grow">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <h3 class="text-2xl font-display font-bold text-coal-900">המבורגר אנגוס</h3>
@@ -234,7 +258,7 @@
                 </article>
                 <!-- Sides/Drinks -->
                 <article class="bg-coal-900 text-white rounded-3xl shadow-lg p-8 flex flex-col">
-                    <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i class="fas fa-utensils text-ember-600"></i> לצד הכריך</h3>
+                    <h3 class="text-2xl font-display font-bold mb-6 flex items-center gap-3"><i aria-hidden="true" class="fas fa-utensils text-ember-600"></i> לצד הכריך</h3>
                     <div class="space-y-4 text-lg">
                         <p class="flex justify-between border-b border-white/10 pb-3"><span>פחית שתיה</span> <span class="font-bold" data-price="can">10 ₪</span></p>
                         <p class="flex justify-between border-b border-white/10 pb-3"><span>בירה קרה</span> <span class="font-bold" data-price="beer">25 ₪</span></p>
@@ -254,36 +278,44 @@
             </div>
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid lg:grid-cols-2">
                 <div class="p-6 md:p-10">
-                    <p class="text-2xl font-display font-bold mb-2 flex items-center gap-3"><i class="fas fa-map-marker-alt text-ember-600"></i> חניון המועצה האזורית רמת הנגב</p>
                     <div id="open-status-inline" class="hidden items-center gap-2 text-lg font-semibold mb-6">
-                        <span class="status-dot w-3 h-3 rounded-full bg-gray-400"></span>
+                        <span aria-hidden="true" class="status-dot w-3 h-3 rounded-full bg-gray-400"></span>
                         <span class="status-text"></span>
                     </div>
 
                     <!-- Special days (filled from the management sheet) -->
                     <div id="special-days" class="hidden mb-6 bg-ember-50 border-2 border-ember-100 rounded-2xl p-5">
-                        <h3 class="text-lg font-bold text-ember-800 mb-3"><i class="fas fa-bullhorn ml-2"></i>שינויים בימים הקרובים</h3>
+                        <h3 class="text-lg font-bold text-ember-800 mb-3"><i aria-hidden="true" class="fas fa-bullhorn ml-2"></i>שינויים בימים הקרובים</h3>
                         <ul id="special-days-list" class="space-y-2 text-lg"></ul>
                     </div>
 
                     <h3 class="text-lg font-bold text-gray-500 mb-3">שעות פעילות בשגרה</h3>
                     <div id="hours-grid" class="space-y-2 mb-8">
-                        <div class="flex justify-between items-center bg-gray-50 rounded-xl px-5 py-3 text-lg"><span class="font-bold">יום חמישי</span><span class="time-range">11:00 - 17:00</span></div>
-                        <div class="flex justify-between items-center bg-gray-50 rounded-xl px-5 py-3 text-lg"><span class="font-bold">יום שישי</span><span class="time-range">11:00 - 17:00</span></div>
-                        <div class="flex justify-between items-center bg-gray-50 rounded-xl px-5 py-3 text-lg"><span class="font-bold">יום שבת</span><span class="time-range">11:00 - 17:00</span></div>
+                        <div class="flex justify-between items-center gap-3 bg-gray-50 rounded-xl px-5 py-3 text-lg"><span><span class="font-bold block">יום שלישי</span><span class="text-base text-gray-600">החורשה מול שער כמהין</span></span><span class="time-range">12:00 - 17:00</span></div>
+                        <div class="flex justify-between items-center gap-3 bg-gray-50 rounded-xl px-5 py-3 text-lg"><span><span class="font-bold block">יום חמישי</span><span class="text-base text-gray-600">חניון המועצה האזורית רמת הנגב</span></span><span class="time-range">11:00 - 17:00</span></div>
+                        <div class="flex justify-between items-center gap-3 bg-gray-50 rounded-xl px-5 py-3 text-lg"><span><span class="font-bold block">יום שישי</span><span class="text-base text-gray-600">חניון המועצה האזורית רמת הנגב</span></span><span class="time-range">11:00 - 17:00</span></div>
+                        <div class="flex justify-between items-center gap-3 bg-gray-50 rounded-xl px-5 py-3 text-lg"><span><span class="font-bold block">יום שבת</span><span class="text-base text-gray-600">חניון המועצה האזורית רמת הנגב</span></span><span class="time-range">11:00 - 17:00</span></div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="https://waze.com/ul?ll=31.003624,34.772013&navigate=yes" target="_blank" class="flex-1 bg-blue-600 text-white px-6 py-4 rounded-full hover:bg-blue-700 transition flex items-center justify-center gap-3 font-bold shadow-lg text-lg">
-                            <i class="fab fa-waze text-2xl"></i> ניווט ב-Waze
-                        </a>
-                        <a href="https://wa.me/972544341281" target="_blank" class="flex-1 bg-green-600 text-white px-6 py-4 rounded-full hover:bg-green-700 transition flex items-center justify-center gap-3 font-bold shadow-lg text-lg">
-                            <i class="fab fa-whatsapp text-2xl"></i> 054-434-1281
-                        </a>
+                    <!-- Locations + navigation (filled from the management sheet) -->
+                    <h3 class="text-lg font-bold text-gray-500 mb-3">ניווט</h3>
+                    <div id="locations-list" class="space-y-3 mb-3">
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-2 border-gray-100 rounded-2xl px-5 py-4">
+                            <div><p class="text-xl font-display font-bold flex items-center gap-2"><i aria-hidden="true" class="fas fa-map-marker-alt text-ember-600"></i> החורשה מול שער כמהין</p><p class="text-gray-600">יום שלישי</p></div>
+                            <a href="https://waze.com/ul?q=%D7%9B%D7%9E%D7%94%D7%99%D7%9F&navigate=yes" target="_blank" rel="noopener" class="bg-blue-600 text-white px-5 py-3 rounded-full hover:bg-blue-700 transition flex items-center gap-2 font-bold"><i aria-hidden="true" class="fab fa-waze text-xl"></i> ניווט ב-Waze</a>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-2 border-gray-100 rounded-2xl px-5 py-4">
+                            <div><p class="text-xl font-display font-bold flex items-center gap-2"><i aria-hidden="true" class="fas fa-map-marker-alt text-ember-600"></i> חניון המועצה האזורית רמת הנגב</p><p class="text-gray-600">ימים חמישי, שישי, שבת</p></div>
+                            <a href="https://waze.com/ul?ll=31.003624,34.772013&navigate=yes" target="_blank" rel="noopener" class="bg-blue-600 text-white px-5 py-3 rounded-full hover:bg-blue-700 transition flex items-center gap-2 font-bold"><i aria-hidden="true" class="fab fa-waze text-xl"></i> ניווט ב-Waze</a>
+                        </div>
                     </div>
+
+                    <a href="https://wa.me/972544341281" target="_blank" rel="noopener" class="mt-6 bg-green-600 text-white px-6 py-4 rounded-full hover:bg-green-700 transition flex items-center justify-center gap-3 font-bold shadow-lg text-lg">
+                        <i aria-hidden="true" class="fab fa-whatsapp text-2xl"></i> 054-434-1281
+                    </a>
                 </div>
                 <div class="h-80 lg:h-auto min-h-[20rem]">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1209.086057621689!2d34.77201264408419!3d31.003624477087588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sil!4v1754663133310!5m2!1sen!2sil" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="מפה"></iframe>
+                    <iframe id="map-frame" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1209.086057621689!2d34.77201264408419!3d31.003624477087588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sil!4v1754663133310!5m2!1sen!2sil" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="מפת מיקום הפודטראק: חניון המועצה האזורית רמת הנגב"></iframe>
                 </div>
             </div>
         </section>
@@ -295,31 +327,35 @@
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-coal-900">קצת מהאווירה</h2>
             </div>
             <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                <img src="assets/IMG_2256.JPG" alt="תמונה 1" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2257.JPG" alt="תמונה 2" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2175.JPG" alt="תמונה 3" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2112.JPG" alt="תמונה 4" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2178.JPG" alt="תמונה 5" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2179.JPG" alt="תמונה 6" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2187.JPG" alt="תמונה 7" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
-                <img src="assets/IMG_2253.JPG" alt="תמונה 8" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2256.JPG" alt="מבחר כריכי בשר על שולחן עץ בחצר" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/ASADO.JPG" alt="קרואסון אסאדו מקרוב עם צ'ימיצ'ורי" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2175.JPG" alt="צ'וריפאן מוגש על בול עץ ליד כוס מאטה וקקטוס" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2112.JPG" alt="אורי נשען על הפודטראק של מיטגלגלים" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/sandwich-fries.jpeg" alt="כריך בשר עם צ'יפס על נייר עיתון" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2179.JPG" alt="צ'וריפאן מקרוב עם פלפל קלוי ועגבניה" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2253.JPG" alt="כריכי בשר עטופים בנייר על רקע המדבר" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/URI-TRUCK.JPG" alt="אורי ליד הפודטראק עם הלוגו" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2257.JPG" alt="קרואסון אסאדו ולומיטו על שולחן עץ" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/CHORI3.JPG" alt="צ'וריפאן עם צ'ימיצ'ורי על קרש עץ זית" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2178.JPG" alt="שני חצאי צ'וריפאן על בול עץ במדבר" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
+                <img src="assets/IMG_2187.JPG" alt="צ'וריפאן ומאטה על בול עץ" loading="lazy" class="rounded-2xl shadow-md h-48 md:h-64 w-full object-cover hover:opacity-90 transition cursor-zoom-in">
             </div>
         </section>
 
     </main>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="hidden fixed inset-0 z-[60] bg-black/95 items-center justify-center" role="dialog" aria-modal="true">
+    <div id="lightbox" class="hidden fixed inset-0 z-[60] bg-black items-center justify-center" role="dialog" aria-modal="true" aria-label="גלריית תמונות">
         <button id="lb-close" class="absolute top-4 left-4 text-white text-4xl w-12 h-12" aria-label="סגירה">&times;</button>
-        <button id="lb-prev" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/20" aria-label="הקודמת"><i class="fas fa-chevron-right"></i></button>
+        <button id="lb-prev" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/20" aria-label="הקודמת"><i aria-hidden="true" class="fas fa-chevron-right"></i></button>
         <img id="lb-img" src="" alt="" class="max-h-[85vh] max-w-[92vw] rounded-xl shadow-2xl object-contain">
-        <button id="lb-next" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/20" aria-label="הבאה"><i class="fas fa-chevron-left"></i></button>
-        <span id="lb-count" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-lg"></span>
+        <button id="lb-next" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white text-3xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/20" aria-label="הבאה"><i aria-hidden="true" class="fas fa-chevron-left"></i></button>
+        <span id="lb-count" dir="ltr" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 text-lg" aria-live="polite"></span>
     </div>
 
     <!-- Floating order button (mobile) -->
-    <a href="https://wa.me/972544341281" target="_blank" class="md:hidden fixed bottom-4 inset-x-4 z-40 bg-green-600 active:bg-green-700 text-white font-bold text-xl py-4 rounded-full shadow-2xl flex items-center justify-center gap-3">
-        <i class="fab fa-whatsapp text-2xl"></i> צרו קשר בוואטסאפ
+    <a href="https://wa.me/972544341281" target="_blank" rel="noopener" class="md:hidden fixed bottom-4 inset-x-4 z-40 bg-green-600 active:bg-green-700 text-white font-bold text-xl py-4 rounded-full shadow-2xl flex items-center justify-center gap-3">
+        <i aria-hidden="true" class="fab fa-whatsapp text-2xl"></i> צרו קשר בוואטסאפ
     </a>
 
     <!-- Footer -->
@@ -327,34 +363,55 @@
         <div class="container mx-auto px-6">
             <p class="text-3xl font-display font-extrabold mb-6">מיטגלגלים</p>
             <div class="flex justify-center gap-6 mb-8">
-                <a href="https://www.facebook.com/profile.php?id=61578121682233" target="_blank" class="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 transition flex items-center justify-center text-2xl" aria-label="פייסבוק"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/meatgalgelim_/" target="_blank" class="w-12 h-12 rounded-full bg-white/10 hover:bg-pink-600 transition flex items-center justify-center text-2xl" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61578121682233" target="_blank" rel="noopener" class="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 transition flex items-center justify-center text-2xl" aria-label="פייסבוק"><i aria-hidden="true" class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/meatgalgelim_/" target="_blank" rel="noopener" class="w-12 h-12 rounded-full bg-white/10 hover:bg-pink-600 transition flex items-center justify-center text-2xl" aria-label="אינסטגרם"><i aria-hidden="true" class="fab fa-instagram"></i></a>
             </div>
+            <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4" aria-label="קישורים משפטיים">
+                <a href="privacy.html" class="text-gray-300 hover:text-white underline-offset-4 hover:underline">מדיניות פרטיות</a>
+                <a href="accessibility.html" class="text-gray-300 hover:text-white underline-offset-4 hover:underline">הצהרת נגישות</a>
+            </nav>
             <p class="text-gray-400">© <span id="year">2026</span> מיטגלגלים - אורי ודבורה נחימוב</p>
-            <p class="text-sm text-gray-500 mt-2">רמת הנגב | בשר משובח על גלגלים</p>
+            <p class="text-sm text-gray-400 mt-2">רמת הנגב | בשר משובח על גלגלים</p>
         </div>
     </footer>
+
+    <script src="assets/a11y.js"></script>
 
     <!-- Logic Scripts -->
     <script>
         // Mobile Menu Logic
         const mobileBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileBtn.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('hidden') === false;
+            mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
 
         // Auto-close menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileBtn.setAttribute('aria-expanded', 'false');
+            });
         });
 
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Prices & opening hours - managed from the Google Sheet admin page.
-        // The values written in the HTML above (and FALLBACK_HOURS) are used if the fetch fails.
+        // Prices, locations & opening hours - managed from the admin page (admin.html -> Google Sheet).
+        // The values written in the HTML above (and the FALLBACK_* below) are used if the fetch fails.
         const SITE_DATA_URL = 'https://script.google.com/macros/s/AKfycbxyG_wAwASpTawW4DG1XAaqgOYoKWlKXEXfbHizb3P2cJSvfdSeFJ6B5VlqfqVOE3Q/exec?action=data';
         const DAY_NAMES = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
         const SPECIAL_DAYS_AHEAD = 30;
-        const FALLBACK_HOURS = [4, 5, 6].map(day => ({ day, open: '11:00', close: '17:00' }));
+        const FALLBACK_LOCATIONS = [
+            { id: 'council', name: 'חניון המועצה האזורית רמת הנגב', nav: 'https://waze.com/ul?ll=31.003624,34.772013&navigate=yes' },
+            { id: 'kmehin', name: 'החורשה מול שער כמהין', nav: 'https://waze.com/ul?q=%D7%9B%D7%9E%D7%94%D7%99%D7%9F&navigate=yes' },
+        ];
+        const FALLBACK_HOURS = [
+            { day: 2, open: '12:00', close: '17:00', location: 'kmehin' },
+            ...[4, 5, 6].map(day => ({ day, open: '11:00', close: '17:00', location: 'council' })),
+        ];
+        let LOCATIONS = FALLBACK_LOCATIONS;
+        let mapLocation = 'council'; // the location the map currently shows (the HTML map is the council parking lot)
 
         // Current date/time in Israel, whatever the visitor's timezone
         function israelNow() {
@@ -373,11 +430,19 @@
             return { date: dt.toISOString().slice(0, 10), day: dt.getUTCDay() };
         }
 
-        // Hours for a specific date: a one-off exception wins over the regular week
+        function locationById(id) {
+            return LOCATIONS.find(l => l.id === id) || LOCATIONS[0];
+        }
+
+        // Hours + location for a specific date: a one-off exception wins over the regular week
         function scheduleFor(date, day, hours, exceptions) {
+            const regular = hours.find(h => h.day === day);
             const x = exceptions.find(e => e.date === date);
-            if (x) return x.closed ? null : { open: x.open, close: x.close };
-            return hours.find(h => h.day === day) || null;
+            if (x) {
+                if (x.closed) return null;
+                return { open: x.open, close: x.close, location: x.location || (regular && regular.location) };
+            }
+            return regular || null;
         }
 
         function timeRange(open, close) {
@@ -387,22 +452,30 @@
             return span;
         }
 
+        // Only mention the place when there is more than one
+        function placeSuffix(locId) {
+            return LOCATIONS.length > 1 ? ' · ' + locationById(locId).name : '';
+        }
+
         function renderStatus(hours, exceptions) {
             const now = israelNow();
-            let isOpen = false, text = '';
+            let isOpen = false, text = '', showLoc = null;
             const today = scheduleFor(now.date, addDays(now.date, 0).day, hours, exceptions);
             if (today && now.time >= today.open && now.time < today.close) {
                 isOpen = true;
-                text = 'פתוח עכשיו · עד ' + today.close;
+                showLoc = today.location;
+                text = 'פתוח עכשיו · עד ' + today.close + placeSuffix(today.location);
             } else if (today && now.time < today.open) {
-                text = 'סגור כרגע · נפתחים היום ב-' + today.open;
+                showLoc = today.location;
+                text = 'סגור כרגע · נפתחים היום ב-' + today.open + placeSuffix(today.location);
             } else {
                 for (let i = 1; i <= 14; i++) {
                     const next = addDays(now.date, i);
                     const s = scheduleFor(next.date, next.day, hours, exceptions);
                     if (s) {
                         const when = i === 1 ? 'מחר' : 'ביום ' + DAY_NAMES[next.day];
-                        text = 'סגור כרגע · נפתחים ' + when + ' ב-' + s.open;
+                        showLoc = s.location;
+                        text = 'סגור כרגע · נפתחים ' + when + ' ב-' + s.open + placeSuffix(s.location);
                         break;
                     }
                 }
@@ -419,6 +492,18 @@
                 box.classList.remove('hidden');
                 box.classList.add(id === 'open-status' ? 'inline-flex' : 'flex');
             });
+            if (showLoc) renderMap(locationById(showLoc));
+        }
+
+        // The map shows where the truck is today, or where it will be next
+        function renderMap(loc) {
+            if (!loc || loc.id === mapLocation) return;
+            const ll = (loc.nav || '').match(/ll=(-?[\d.]+)(?:,|%2C)(-?[\d.]+)/);
+            const q = ll ? ll[1] + ',' + ll[2] : loc.name;
+            const frame = document.getElementById('map-frame');
+            frame.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(q) + '&z=15&hl=iw&output=embed';
+            frame.title = 'מפת מיקום הפודטראק: ' + loc.name;
+            mapLocation = loc.id;
         }
 
         function renderPrices(menu) {
@@ -435,12 +520,57 @@
             grid.innerHTML = '';
             hours.forEach(h => {
                 const row = document.createElement('div');
-                row.className = 'flex justify-between items-center bg-gray-50 rounded-xl px-5 py-3 text-lg';
+                row.className = 'flex justify-between items-center gap-3 bg-gray-50 rounded-xl px-5 py-3 text-lg';
+                const label = document.createElement('span');
                 const name = document.createElement('span');
-                name.className = 'font-bold';
+                name.className = 'font-bold block';
                 name.textContent = 'יום ' + DAY_NAMES[h.day];
-                row.append(name, timeRange(h.open, h.close));
+                label.appendChild(name);
+                if (LOCATIONS.length > 1) {
+                    const place = document.createElement('span');
+                    place.className = 'text-base text-gray-600';
+                    place.textContent = locationById(h.location).name;
+                    label.appendChild(place);
+                }
+                row.append(label, timeRange(h.open, h.close));
                 grid.appendChild(row);
+            });
+        }
+
+        function wazeButton(href) {
+            const a = document.createElement('a');
+            a.href = href;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.className = 'bg-blue-600 text-white px-5 py-3 rounded-full hover:bg-blue-700 transition flex items-center gap-2 font-bold';
+            a.innerHTML = '<i aria-hidden="true" class="fab fa-waze text-xl"></i> ניווט ב-Waze<span class="sr-only"> (נפתח בחלון חדש)</span>';
+            return a;
+        }
+
+        // One card per location that is used on a regular day, with its days and a Waze button
+        function renderLocations(hours) {
+            const firstDay = l => Math.min(...hours.filter(h => locationById(h.location).id === l.id).map(h => h.day));
+            const used = LOCATIONS.filter(l => hours.some(h => locationById(h.location).id === l.id))
+                .sort((a, b) => firstDay(a) - firstDay(b));
+            if (!used.length) return;
+            const list = document.getElementById('locations-list');
+            list.innerHTML = '';
+            used.forEach(l => {
+                const days = hours.filter(h => locationById(h.location).id === l.id).map(h => DAY_NAMES[h.day]);
+                const card = document.createElement('div');
+                card.className = 'flex flex-wrap items-center justify-between gap-3 border-2 border-gray-100 rounded-2xl px-5 py-4';
+                const info = document.createElement('div');
+                const title = document.createElement('p');
+                title.className = 'text-xl font-display font-bold flex items-center gap-2';
+                title.innerHTML = '<i aria-hidden="true" class="fas fa-map-marker-alt text-ember-600"></i> ';
+                title.appendChild(document.createTextNode(l.name));
+                const when = document.createElement('p');
+                when.className = 'text-gray-600';
+                when.textContent = (days.length > 1 ? 'ימים ' : 'יום ') + days.join(', ');
+                info.append(title, when);
+                card.appendChild(info);
+                if (l.nav) card.appendChild(wazeButton(l.nav));
+                list.appendChild(card);
             });
         }
 
@@ -454,7 +584,7 @@
             upcoming.forEach(x => {
                 const [, m, d] = x.date.split('-').map(Number);
                 const day = addDays(x.date, 0).day;
-                const regular = hours.some(h => h.day === day);
+                const regular = hours.find(h => h.day === day);
 
                 const li = document.createElement('li');
                 li.className = 'flex flex-wrap justify-between gap-2 bg-white rounded-xl px-4 py-3 shadow-sm';
@@ -471,6 +601,22 @@
                     what.appendChild(timeRange(x.open, x.close));
                 }
                 li.append(when, what);
+                // Say where, when it is not the usual place for that day
+                const loc = x.location && !x.closed ? locationById(x.location) : null;
+                if (loc && (!regular || locationById(regular.location).id !== loc.id)) {
+                    const place = document.createElement('span');
+                    place.className = 'w-full text-gray-700 text-base flex flex-wrap items-center gap-2';
+                    place.innerHTML = '<i aria-hidden="true" class="fas fa-map-marker-alt text-ember-600"></i> ';
+                    place.appendChild(document.createTextNode(loc.name));
+                    if (loc.nav) {
+                        const nav = document.createElement('a');
+                        nav.href = loc.nav; nav.target = '_blank'; nav.rel = 'noopener';
+                        nav.className = 'text-blue-700 underline font-semibold';
+                        nav.textContent = 'ניווט';
+                        place.appendChild(nav);
+                    }
+                    li.appendChild(place);
+                }
                 if (x.note) {
                     const note = document.createElement('span');
                     note.className = 'w-full text-gray-600 text-base';
@@ -487,10 +633,12 @@
         fetch(SITE_DATA_URL)
             .then(res => res.json())
             .then(data => {
+                if (data.locations && data.locations.length) LOCATIONS = data.locations;
                 const hours = data.hours && data.hours.length ? data.hours : FALLBACK_HOURS;
                 const exceptions = data.exceptions || [];
                 renderPrices(data.menu || []);
                 renderHours(hours);
+                renderLocations(hours);
                 renderSpecialDays(exceptions, hours);
                 renderStatus(hours, exceptions);
             })
@@ -508,19 +656,40 @@
             lbImg.alt = galleryImgs[lbIndex].alt;
             document.getElementById('lb-count').textContent = (lbIndex + 1) + ' / ' + galleryImgs.length;
         }
+        let lbReturnFocus = null;
         function openLightbox(i) {
+            lbReturnFocus = document.activeElement;
             showImage(i);
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
             document.body.style.overflow = 'hidden';
+            document.getElementById('lb-close').focus();
         }
         function closeLightbox() {
             lightbox.classList.add('hidden');
             lightbox.classList.remove('flex');
             document.body.style.overflow = '';
+            if (lbReturnFocus) lbReturnFocus.focus();
         }
 
-        galleryImgs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+        // Gallery images open with mouse, touch or keyboard (Enter / Space)
+        galleryImgs.forEach((img, i) => {
+            img.tabIndex = 0;
+            img.setAttribute('role', 'button');
+            img.setAttribute('aria-label', img.alt + ' - הגדלת התמונה');
+            img.addEventListener('click', () => openLightbox(i));
+            img.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+            });
+        });
+        // Keep keyboard focus inside the open lightbox
+        lightbox.addEventListener('keydown', e => {
+            if (e.key !== 'Tab') return;
+            const btns = [...lightbox.querySelectorAll('button')];
+            const idx = btns.indexOf(document.activeElement);
+            e.preventDefault();
+            btns[(idx + (e.shiftKey ? -1 : 1) + btns.length) % btns.length].focus();
+        });
         document.getElementById('lb-close').addEventListener('click', closeLightbox);
         document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); showImage(lbIndex + 1); });
         document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); showImage(lbIndex - 1); });
@@ -541,16 +710,40 @@
             touchX = null;
         });
 
-        // Ensure video plays on all devices
-        document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('hero-video');
-            if(video) {
-                video.play().catch(() => {
-                    window.addEventListener('touchstart', () => video.play(), {once: true});
-                    window.addEventListener('click', () => video.play(), {once: true});
-                });
-            }
+        // Hero video: pause/play button, respects "reduce motion" and the accessibility menu
+        const video = document.getElementById('hero-video');
+        const videoBtn = document.getElementById('video-toggle');
+        let videoStoppedByUser = false;
+
+        function setVideoUI(paused) {
+            videoBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+            videoBtn.setAttribute('aria-label', paused ? 'הפעלת סרטון הרקע' : 'עצירת סרטון הרקע');
+            videoBtn.querySelector('i').className = 'fas ' + (paused ? 'fa-play' : 'fa-pause');
+        }
+        function pauseVideo() { video.pause(); setVideoUI(true); }
+        function playVideo() { video.play().then(() => setVideoUI(false)).catch(() => setVideoUI(true)); }
+
+        videoBtn.addEventListener('click', () => {
+            if (video.paused) { videoStoppedByUser = false; playVideo(); }
+            else { videoStoppedByUser = true; pauseVideo(); }
         });
+        document.addEventListener('a11y:nomotion', () => { videoStoppedByUser = true; pauseVideo(); });
+        document.addEventListener('a11y:motion', () => { videoStoppedByUser = false; playVideo(); });
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            || document.documentElement.classList.contains('a11y-nomotion');
+        if (reduceMotion) {
+            videoStoppedByUser = true;
+            pauseVideo();
+        } else {
+            // Some phones block autoplay until the first touch
+            video.play().catch(() => {
+                setVideoUI(true);
+                const retry = () => { if (!videoStoppedByUser) playVideo(); };
+                window.addEventListener('touchstart', retry, { once: true });
+                window.addEventListener('click', retry, { once: true });
+            });
+        }
     </script>
 
 </body>
